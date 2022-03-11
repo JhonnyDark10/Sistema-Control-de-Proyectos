@@ -1,0 +1,161 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winTipoActividades" ?>
+<zk>
+	<window id="winTipoActividades" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm.opcionSeleccionado') @init('controlador.Seg_menus')" height="350px"
+		width="370px" closable="true" border="normal" position="center,center"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+		<image src="/A_Iconos/registro.png"></image>
+		
+<groupbox>
+		<tabbox id="tb" height="230px"
+			style="border-radius: 5px;border: white 1px solid;">
+			<tabs>
+				<tab label="Datos"
+					style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+			</tabs>
+			<tabpanels>
+				<tabpanel style="border-radius: 5px;">
+
+					<grid
+						style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+						<columns
+							style="background-color: transparent;">
+							<column align="left" hflex="min" />
+							<column />
+
+						</columns>
+						<rows>
+							<row>
+								<cell>
+									<checkbox id="menupadre" onClick="@command('menupadre')"
+										label="Menu" style="font-size: 1em;color:black">
+									</checkbox>
+								</cell>
+								<cell>
+									<checkbox id="menuhijo"
+										label="SubMenu" style="font-size: 1em;color:black"
+										onClick="@command('menuhijo')">
+									</checkbox>
+								</cell>
+							</row>
+							<row>
+							<cell>
+
+								</cell>
+								<cell>
+									<textbox height="25px" width="180px"
+										id="textnombre"
+										style="text-transform: capitalize;font-size: 1em;color:black;"					
+										>
+									</textbox>
+								</cell>
+								
+							</row>
+							<row>
+								<cell>
+									<label value="Descripción:"
+										style="font-size: 1em;color:black">
+									</label>
+								</cell>
+								<cell>
+									<textbox height="25px" width="180px" maxlength="100"
+										id="textDescripcion"
+										style="text-transform: capitalize;font-size: 1em;color:black;"
+										
+										
+										
+										>
+									</textbox>
+								</cell>
+							</row>
+
+							<row>
+								<cell>
+									<label value="Posición:"
+										style="font-size: 1em;color:black">
+									</label>
+								</cell>
+								<cell>
+									<textbox height="25px" width="50px"
+										id="textPosicion"
+										style="text-transform: capitalize;font-size: 1em;color:black;"
+										
+										xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+									</textbox>
+								</cell>
+							</row>
+							<row>
+								<cell>
+									<checkbox id="url"
+										label="Url Asociado" style="font-size: 1em;color:black">
+									</checkbox>
+								</cell>
+								<cell>
+									<textbox height="25px" width="180px" maxlength="254"
+										id="textUrl"
+										style="font-size: 1em;color:black;"
+										
+										>
+									</textbox>
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+		<toolbar>
+			<space width="88px"></space>
+			
+			<button onClick="@command('grabar')" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button onClick="@command('salir')" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+			
+			
+		</toolbar>
+		</groupbox>
+		<toolbar>
+			<label style="font-size: 0.7em;color:black"
+				value="Identificación N°" visible="false">
+			</label>
+			<label id="numero" visible="false"
+				style="font-family: serif;font-size: 0.7em;color:black"
+				value="@bind(vm.opcionSeleccionado.idMenu)" />
+
+		</toolbar>
+	</window>
+</zk>

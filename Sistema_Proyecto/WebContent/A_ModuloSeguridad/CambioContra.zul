@@ -1,0 +1,122 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaCuentas" ?>
+<zk>
+	<window id="winListaCuentas"
+		apply="controlador.Ctrl_CambioContrasena" 
+		height="100%" width="100%"
+		border="none" closable="true" position="Right,center"
+		style="
+		margin: 0px;
+		
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+  	<toolbar>
+
+			<image src="/A_Iconos/registro.png"></image>
+			<separator></separator>
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				Ventana Habilitada por el Administrador  
+
+			</label>
+
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				Para cambio de contraseña personal
+			</label>
+			<separator></separator>
+
+		</toolbar>
+		
+	<groupbox vflex="1" id="grupo">
+
+	<hbox hflex="1" vflex="1" align="center" pack="center"
+			spacing="100px">
+			
+			<panel id="panel" width="549px" title="Cambio de Contraseña" 
+					style="font-size:1em;background:#0093f9;border: 1px solid blue;border-radius: 15px;"
+					border="normal">
+					
+		<panelchildren>
+		<columnlayout>
+		<columnchildren width="120px">
+
+								<image src="/A_Iconos/candado.png"
+									height="100px" />
+
+							</columnchildren>
+		<columnchildren width="100%">
+		 <separator></separator><separator></separator>
+		<grid width="433px" style="border:none;color:black;">
+			<columns>
+				<column label="" style="font-size:1em;color:black;" width="120px" />
+				<column label="" width="310px" />
+				
+			</columns>
+			<rows>
+			<row >
+			<cell>
+			<label style="font-size: 1em;color:black">
+					Nueva Contraseña
+		</label>
+		</cell>
+		<cell>
+		<textbox id="txtNueva" height="30px" width="200px" maxlength="50" 
+					style="font-size: 1em;color:black;">
+		</textbox></cell> 
+			</row>
+			<row>
+			<cell>
+			<label style="font-size: 1em;color:black">
+					Repetir Contraseña
+		</label></cell>
+		 <cell>            
+	    <textbox id="txtRepetir" height="30px" width="200px" maxlength="50" 
+					style="font-size: 1em;color:black;">
+		</textbox> </cell>
+			</row>
+			</rows>
+		
+		</grid>
+		
+		
+		<separator></separator>
+	<separator></separator>
+	<separator></separator>
+	<separator></separator>
+		<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+                        <space></space>
+								<space></space>
+                        
+			 				
+			<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 0.9em;color:white" />		
+			
+			<toolbarbutton id="grabar_salir" label="Salir" href="j_spring_security_logout" visible="false"
+				style="background-color: #0093f9;border-radius: 15px;font-size: 1em;font-weight: bold;color:white"
+				src="A_Iconos/usu_4.ico" height="38px"/>
+		</columnchildren>
+		
+		
+		</columnlayout>
+		</panelchildren>
+			
+		</panel>
+		
+			
+		</hbox>
+		</groupbox>	
+				
+	</window>
+</zk>

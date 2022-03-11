@@ -1,0 +1,133 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaCuentas" ?>
+<zk>
+	<window id="winListaCuentas"
+		apply="controlador.Ctrl_ListaCuentas" height="100%" width="100%"
+		border="none" closable="true" position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+		<vlayout vflex="1" hflex="1" 
+		><groupbox>
+		<separator></separator>
+			<space></space><space></space>
+			<image src="/A_Iconos/usuarios.png"></image>
+			<toolbar >
+			<separator></separator>
+			<groupbox>
+				<label style="font-size: 1em;color:black">
+					Búsqueda por cédula
+				</label>
+				<space></space>
+				<textbox id="txtBuscar" height="30px" width="150px" maxlength="10"
+					style="font-size: 1em;color:black;" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+					
+				
+				</textbox> 
+                    
+	<space></space>				
+				
+				<button id="btnBuscar"  src="A_Iconos/buscar_g.png" 
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				
+			
+
+
+               <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                
+			    
+				  <button id="btnNuevo" label="Añadir" src="A_Iconos/agregar_g.png" height="33px"
+									style="text-align: center;border-radius: 5px;font-size: 1.2em;color:white"/>
+									
+				<space ></space>
+                
+                
+                  
+                <button id="btnEditar" label="Editar" src="A_Iconos/edita_a.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				<space ></space>
+              
+              
+              <button id="btnEliminar" label="Eliminar" src="A_Iconos/eliminar_g.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+              
+			</groupbox>
+			</toolbar>
+			</groupbox>
+			<hlayout vflex="1" hflex="1" style="background:#0FF647;border-radius: 10px;border: #0FF647">
+				<hlayout vflex="1" hflex="1" >
+					<listbox id="LstCuentas"
+						model="@{winListaCuentas$composer.Usuarios}"
+						selectedItem="@{winListaCuentas$composer.cuentaSelecionada}"
+						vflex="1" hflex="1" style="border: #0093f9 1px solid;border-radius: 5px;">
+						<listhead
+							style="border: #0FF647 1px solid;padding: 0px 0px 0px 6px;font-size: 0.9em;">
+							<listheader label="Cédula" width="6%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Apellidos y Nombres" width="8%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Perfil" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Usuario" width="8%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						</listhead>
+
+						<template name="model">
+							<listitem
+								style="padding: 0px 0px 0px 6px;font-size: 0.9em;">
+								<listcell style="font-size: 0.9em;"
+									label="${each.cedula}" />
+								
+								<listcell
+									label="${each.apellidoPaterno} ${each.apellidoMaterno} ${each.nombre}"
+									style="text-transform: capitalize;font-size: 0.9em;" />
+							
+								<listcell
+									label="${each.segPerfil.codigo}" style="font-size: 0.9em;" />
+								<listcell
+									label="${each.usuario}"
+									style="font-size: 0.9em;" />
+								
+								
+							</listitem>
+						</template>
+
+					</listbox>
+				</hlayout>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,22 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaCuentas" ?>
+<zk>
+	<window id="winListaCuentas" height="100%" width="100%"
+		border="none" closable="true" position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+		<separator height="40%"></separator>
+		<space width="35%"></space>
+				<image src="/A_Iconos/fondo.png" />
+				<space></space>
+				<label
+					style="font-family: serif;font-size: 0.9em;color:black"
+					value="Bienvenido Área de Trabajo " />
+
+	</window>
+</zk>

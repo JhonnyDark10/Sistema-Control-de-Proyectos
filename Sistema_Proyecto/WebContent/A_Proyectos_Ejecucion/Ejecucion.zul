@@ -1,0 +1,123 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaEmpleados" ?>
+<zk>
+	<window id="winListaEmpleados"
+		apply="controlador.Ctrl_ListaEjecucion" height="100%" width="100%"
+		border="none" closable="true" position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+		<vlayout vflex="1" hflex="1" 
+		>
+		<groupbox>
+		<separator></separator>
+			<space></space><space></space>
+			<image src="/A_Iconos/ejecutados.png"></image>
+			<toolbar >
+			<separator></separator>
+			<groupbox>
+				<label style="font-size: 1em;color:black">
+					Búsqueda por nombre
+				</label>
+				<space></space>
+				<textbox id="txtBuscar" height="30px" width="150px" maxlength="40"
+					style="font-size: 1em;color:black;">
+								
+					
+				</textbox> 
+                    
+			<space></space>				
+				
+				<button id="btnBuscar"  src="A_Iconos/buscar_g.png" 
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				
+			
+
+                  <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                
+				  <button id="btnNuevo" label="Asignar Avances" src="A_Iconos/agregar_g.png" height="33px"
+									style="text-align: center;border-radius: 5px;font-size: 1.2em;color:white"/>
+									
+				<space ></space>
+      
+			</groupbox>
+			</toolbar>
+			</groupbox>
+			<hlayout vflex="1" hflex="1" style="background:#0FF647;border-radius: 10px;border: #0FF647">
+				<hlayout vflex="1" hflex="1" >
+					<listbox id="LstEmpleados"
+						model="@{winListaEmpleados$composer.Empleados}"
+						selectedItem="@{winListaEmpleados$composer.empleadoSelecionada}"
+						vflex="1" hflex="1" style="border: #0093f9 1px solid;border-radius: 5px;">
+						<listhead
+							style="border: #0FF647 1px solid;padding: 0px 0px 0px 6px;font-size: 0.9em;">
+							<listheader label="Categoria" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Nombre" width="15%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Encargado" width="15%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Autor" width="20%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Fecha de Inicio" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Fecha Fin" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+					
+							<listheader label="Valor Total" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							
+						
+						</listhead>
+
+						<template name="model">
+							<listitem
+								style="padding: 0px 0px 0px 6px;font-size: 0.9em;">
+								<listcell style="font-size: 0.9em;"
+									label="${each.sisProyectoCategoria.nombreCategoria}" />
+								
+								<listcell
+									label="${each.nombre}"
+									style="text-transform: capitalize;font-size: 0.9em;" />
+							
+								<listcell
+									label="${each.segUsuario.nombre} ${each.segUsuario.apellidoPaterno} ${each.segUsuario.apellidoMaterno}" style="font-size: 0.9em;" />
+								<listcell
+									label="${each.autor}"
+									style="font-size: 0.9em;" />
+								<listcell>
+								<datebox inplace="true" format="MM-dd-yyyy" height="1px"
+                             value="${each.fechaInicio}" style="font-size: 1em;"/>
+									</listcell>
+								
+								<listcell>
+								<datebox inplace="true" format="MM-dd-yyyy" height="1px"
+                             value="${each.fechaFin}" style="font-size: 1em;"/>
+									</listcell>	
+								
+								<listcell label="${each.valorTotal}"
+									style="font-size: 0.9em;" />
+								
+							</listitem>
+						</template>
+
+					</listbox>
+				</hlayout>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

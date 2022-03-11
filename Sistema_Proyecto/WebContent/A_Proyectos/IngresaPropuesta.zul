@@ -1,0 +1,451 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winEmpleados" ?>
+<zk>
+	<window id="winEmpleados" apply="controlador.Ctrl_EditarPropuestas"
+		width="780px" height="450px" border="none" position="center,center"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+
+		<vlayout vflex="1" hflex="1"
+			style="
+font: 1em arial, helvetica, sans-serif;
+background:#ffffff;">
+
+				<image src="/A_Iconos/registro.png"></image>
+<groupbox>
+
+			
+			<tabbox id="tb" height="160px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs id="tabs">
+					<tab id="A" label="General"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+
+						<grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								<column align="left" hflex="min" />
+								<column />
+								<column align="left" hflex="min" />
+								<column />
+							</columns>
+							<rows>
+								<row height="5px">
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Cédula:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+										
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_cedula" value="@{winEmpleados$composer.persona.cedula}"
+											
+											maxlength="10" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+		
+										</textbox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Nombre de Proyecto:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+										
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="nombre" value="@{winEmpleados$composer.persona.nombre}"
+											
+											maxlength="40">
+											
+										</textbox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Categoria:
+										</label>
+
+
+
+									</cell>
+
+									<cell>
+										<combobox id="cbo_categoria"
+											style="font-size: 1em;color:black" 
+											model="@{winEmpleados$composer.categoriaProyectos}"
+											selectedItem="@{winEmpleados$composer.persona.sisProyectoCategoria}"
+											value="@{winEmpleados$composer.persona.sisProyectoCategoria.nombreCategoria}"
+											width="120px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.nombreCategoria}" />
+											</template>
+										</combobox>
+									</cell>
+								</row>
+
+								<row height="5px">
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Autor:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="autor"
+											value="@{winEmpleados$composer.persona.autor}"
+											
+											maxlength="50">
+										</textbox>
+									</cell>
+
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Correo:
+										</label>
+
+									</cell>
+
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="correo"
+											value="@{winEmpleados$composer.persona.correo}"
+											constraint="/.+@.+\.[a-z]+/: No es una dirección email."
+											maxlength="50">
+										</textbox>
+									</cell>
+
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Telefono:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="telefono" value="@{winEmpleados$composer.persona.telefono}"
+											
+											maxlength="10" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+										</textbox>
+
+
+									</cell>
+								</row>
+
+								<row>
+								
+									
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Observaciones:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="observaciones" value="@{winEmpleados$composer.persona.observacion}"
+											
+											maxlength="200">
+											
+										</textbox>
+									</cell>
+								<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Estado:
+										</label>
+
+
+
+									</cell>
+
+									<cell>
+										<combobox id="cbo_estado"
+											style="font-size: 1em;color:black" 
+											model="@{winEmpleados$composer.TipoEstadoPropuesta}"
+											selectedItem="@{winEmpleados$composer.persona.sisProyectoEstado}"
+											value="@{winEmpleados$composer.persona.sisProyectoEstado.nombreEstado}"
+											width="120px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.nombreEstado}" />
+											</template>
+										</combobox>
+									</cell>
+								
+								<cell>
+
+
+										<label
+											style="font-size: 1em;color:black">
+											Documento:
+										</label>
+
+									</cell>
+									<cell>
+										
+										<textbox width="120px"  id="nom_doc">
+										
+										</textbox>
+											<button
+											id="subir"
+											label="Adjuntar" iconSclass="z-icon-upload" upload="true"
+											style="background: black;" />
+
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</tabpanel>
+
+
+				</tabpanels>
+			</tabbox>
+
+
+
+			<tabbox id="tb1" height="160px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs id="tabs1">
+					<tab id="B" label="Descripción de Tareas"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+						
+						<columnlayout height="100%">
+			            
+			            
+			            
+			            
+			            <columnchildren width="45%">
+			            
+			            <grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								
+							</columns>
+							<rows>
+								<row height="5px">
+									<cell>
+									<label
+											style="font-size: 1em;color:black">
+											Descripción Tarea:
+										</label>
+									</cell>
+									<cell>
+									<textbox width="180px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="descripcionTarea"
+											>
+										</textbox>
+									</cell>
+								</row>
+								<row height="5px">
+									<cell>
+									<label
+											style="font-size: 1em;color:black">
+											Valor:
+										</label>
+									</cell>
+									<cell>
+									<textbox width="80px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="ValorTarea"
+											xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+									
+									
+									</textbox>
+									</cell>
+								</row>
+							</rows>
+			            </grid>
+			            
+			           
+			           
+			            </columnchildren>
+			            
+			            
+			             <columnchildren width="10%">
+			             
+			            <separator></separator><separator></separator>
+			            <space width="10px"></space>
+			            <button id="sumar"  src="A_Iconos/addd.png"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+						<separator>
+						</separator>
+						<space width="10px"></space>
+						<button id="restar"  src="A_Iconos/eliminar_g.png" 
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+			           
+			           
+			           
+			             </columnchildren>
+			            
+			            
+			             <columnchildren width="45%">
+			             
+			            			             
+			            <listbox id="LstTipoTareas"
+						model="@{winEmpleados$composer.TareasAsignadas}"
+						selectedItem="@{winEmpleados$composer.descripcionSelecionada}"
+						vflex="1" hflex="1" style="border: #0093f9 1px solid;border-radius: 5px;">
+						<listhead
+							style="border: #0FF647 1px solid;padding: 0px 0px 0px 6px;font-size: 1em;">
+							<listheader label="Descripción" width="80%"
+								style="font-weight: bold;color:white;font-size: 1em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Costo" width="20%"
+								style="font-weight: bold;color:white;font-size: 1em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						</listhead>
+
+						<template name="model">
+							<listitem
+								style="padding: 0px 0px 0px 6px;font-size: 1em;">
+								<listcell style="font-size: 1em;"
+									label="${each.nombreTarea}" />
+								
+								<listcell
+									label="${each.costoTarea}"
+									style="text-transform: capitalize;font-size: 1em;" />	
+							</listitem>
+						</template>
+
+					</listbox>
+			             
+			            </columnchildren>
+			            
+			            
+			            
+			            </columnlayout>
+						
+					</tabpanel>
+
+				</tabpanels>
+			</tabbox>
+
+			
+			<toolbar>
+				<space width="480px"></space>
+					<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+			</toolbar>
+			</groupbox>
+		</vlayout>
+	</window>
+</zk>
+

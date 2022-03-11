@@ -1,0 +1,95 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaEmpleados" ?>
+<zk>
+	<window id="winListaEmpleados"
+		apply="controlador.Ctrl_ListaCategoria" height="100%" width="100%"
+		border="none" closable="true" position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+		<vlayout vflex="1" hflex="1" 
+		>
+		<groupbox> <separator></separator><space></space><space></space>
+			
+			<image src="/A_Iconos/categoriaProyecto.png"></image>
+			<toolbar >
+			<separator></separator>
+			<groupbox>
+				<label style="font-size: 1em;color:black">
+					Búsqueda por nombres
+				</label>
+				<space></space>
+				<textbox id="txtBuscar" height="30px" width="150px" maxlength="10"
+					style="font-size: 1em;color:black;"
+					>
+		
+					</textbox> 
+                    
+
+				
+					<space></space>				
+				
+				<button id="btnBuscar"  src="A_Iconos/buscar_g.png" 
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				
+			
+
+              <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                <space ></space>
+                
+		    
+                <button id="btnNuevo" label="Añadir" src="A_Iconos/agregar_g.png" height="33px"
+									style="text-align: center;border-radius: 5px;font-size: 1.2em;color:white"/>
+									
+				<space ></space>
+                
+                
+                  
+                <button id="btnEditar" label="Editar" src="A_Iconos/edita_a.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				<space ></space>
+              
+              
+              <button id="btnEliminar" label="Eliminar" src="A_Iconos/eliminar_g.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+              
+			</groupbox></toolbar>
+			</groupbox>
+			
+					<listbox id="LstTipoCategoria" 
+						model="@{winListaEmpleados$composer.Sistipocategoria}"
+						selectedItem="@{winListaEmpleados$composer.TipocategoriaSelecionada}"
+						vflex="1" hflex="1" style="border: #0093f9 1px solid;border-radius: 5px;">
+					<listhead style="border: #0FF647 1px solid;padding: 0px 0px 0px 6px;font-size: 0.9em;">
+
+						<listheader label="Nombre" width="100%"
+							style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						
+
+					</listhead>
+					<template name="model">
+						<listitem style="font-size: 0.9em;">
+							<listcell label="${each.nombreCategoria}"
+								style="text-transform: capitalize;font-size: 0.9em;"  />
+					
+						</listitem>
+					</template>
+
+					</listbox>
+				
+		</vlayout>
+	</window>
+</zk>

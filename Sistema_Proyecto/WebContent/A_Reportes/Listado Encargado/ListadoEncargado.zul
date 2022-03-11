@@ -1,0 +1,114 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winReporte" ?>
+<zk>
+	<window id="winReporte" height="100%" width="100%" border="none"
+		apply="controlador.ReporteListadEncargados" closable="true"
+		position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+
+		<toolbar>
+
+			<image src="/A_Iconos/tituloreport.png"></image>
+			<separator></separator>
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				INFORME GENERAL
+
+			</label>
+
+
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				despues le editas jajajajjaja
+			</label>
+			<separator></separator>
+
+		</toolbar>
+
+		<tabbox id="tb" mold="accordion"
+			style="
+		margin: 0px;
+		border: #0093f9 1px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;">
+			<tabs>
+				<tab label="Datos"
+					style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 1em;" />
+				<tab label="Reporte"
+					style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 1em;" />
+
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+
+
+					<separator></separator>
+					<space width="2%"></space>
+					<label style="font-size: 0.8em;color:black">
+						
+					</label>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+
+
+
+					<radio id="radio_usuarios"
+						style="font-size: 0.85em;color:black"
+						label="Egresos Por Meses (Grafico)" />
+					<space></space>
+					<label style="font-size: 1em;color:black">
+						Encargado:
+					</label>
+
+					<combobox id="cbo_encargado"
+						style="font-size: 1em;color:black"
+						model="@{winReporte$composer.llenarUsuarios}"
+						selectedItem="@{$composer.TipoSelecionada}" width="120px">
+						<template name="model">
+							<comboitem
+								style="font-size: 1em;color:black"
+								label="${each.nombre} ${each.apellidoPaterno} ${each.apellidoMaterno}" />
+						</template>
+					</combobox>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+
+					<space width="30%"></space>
+
+
+					<button id="imprimir" label="Reporte"
+						src="A_Iconos/imprimir.png" height="33px"
+						style="border-radius: 5px;font-size: 0.9em;color:white" />
+
+
+
+
+				</tabpanel>
+
+
+				<tabpanel id="Gary_meco">
+
+
+
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+
+	</window>
+</zk>

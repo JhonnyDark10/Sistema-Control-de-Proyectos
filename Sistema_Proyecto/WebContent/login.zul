@@ -1,0 +1,113 @@
+<zk>
+	<div style="background:#0093f9;" height="140px">
+		<separator></separator>
+	
+		<separator></separator>
+		<space width="80%"></space><space></space><space></space>
+		
+	
+		<image src="/A_Iconos/portada1.png" height="40px" />
+		<space width="70%"> </space>
+		<image src="/A_Iconos/gadancon.jpg" height="90px" />
+	</div>
+
+	<groupbox vflex="1">
+		<hbox hflex="1" vflex="1" align="center" pack="center"
+			spacing="20px">
+			<h:form id="f" name="f" action="j_spring_security_check"
+				method="POST" xmlns:h="native">
+
+				<panel id="panel" width="422px" title="Acceso" 
+					style="font-size:1em;background:#0093f9;border: 1px solid blue;border-radius: 15px;"
+					border="normal">
+
+					<panelchildren>
+						<columnlayout>
+							<columnchildren width="120px">
+
+								<image src="/A_Iconos/candado.png"
+									height="100px" />
+
+							</columnchildren>
+							<columnchildren width="100%">
+                                <separator></separator><separator></separator>
+								<!-- Formulario para autenticacion -->
+								<grid hflex="min" style="border:none;">
+									<columns>
+										<column></column>
+										<column align="right" />
+									</columns>
+									<rows>
+										<row >
+
+											<label value="Usuario :"
+												style="font-size:1em;color:black">
+											</label>
+											<textbox id="u" height="35px"
+												constraint="no empty: Ingrese el Usuario" name="username"
+												style="text-transform:lowercase;font-size:1em;"
+												width="150px" 
+												
+												/>
+										</row>
+										<row>
+											<label value="Clave :"
+												style="font-size:1em;color:black">
+											</label>
+
+											<textbox id="p" height="35px" width="150px"
+												constraint="no empty: Ingrese la Contraseña" name="password"
+												type="password"
+												style="font-size:1em;"
+												 />
+										</row>
+
+									</rows>
+								</grid>
+								<separator></separator><separator></separator>
+								<html>
+									<input type="hidden"
+										name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+								</html>
+								<!-- Procesa el login -->
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								
+								<button id="login" label="Ingresar" src="A_Iconos/inicio1.png" height="38px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" type="submit" />
+					<separator></separator>
+					<separator></separator>
+					
+					
+					
+					
+									
+									
+						<separator></separator>
+
+								<html style="color:red"
+									if="${not empty param.login_error}">
+						
+									<![CDATA[ Ingreso Incorrecto,
+									intente nuevamente.<br/><br/> ]]>
+							
+					            </html>
+								<!-- Razon: ${SPRING_SECURITY_LAST_EXCEPTION.message} -->
+							</columnchildren>
+						</columnlayout>
+					</panelchildren>
+				</panel>
+				
+				
+			</h:form>
+		</hbox>
+	</groupbox>
+</zk>

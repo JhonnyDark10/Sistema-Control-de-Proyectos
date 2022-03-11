@@ -1,0 +1,99 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winTipoActividades" ?>
+<zk>
+	<window id="winTipoActividades" position="center,center"
+		apply="controlador.Seg_perfiles" height="240px" width="360px"
+		closable="true" border="normal"
+			style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+		<image src="/A_Iconos/registro.png"></image>
+		<groupbox>
+
+		<tabbox id="tb" height="120px"
+			style="border-radius: 5px;border: white 1px solid;">
+			<tabs>
+				<tab label="Datos"
+					style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+			</tabs>
+			<tabpanels>
+				<tabpanel style="border-radius: 5px;">
+
+					<grid
+						style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+						<columns
+							style="background-color: transparent;">
+							<column align="left" hflex="min" />
+							<column />
+          
+						</columns>
+						<rows>
+							<row>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Código:
+									</label>
+								</cell>
+								<cell>
+									<textbox width="220px" height="25px"
+										maxlength="50"
+										style="text-transform: capitalize;font-size: 1em;color:black;"
+										id="txt_nombre"
+										value="@{winTipoActividades$composer.controlingresotipo.codigo}">
+									</textbox>
+								</cell>
+							</row>
+							<row>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Descripción:
+									</label>
+								</cell>
+								<cell>
+									<textbox width="220px" height="25px"
+										maxlength="50"
+										style="text-transform: capitalize;font-size: 1em;color:black;"
+										id="txt_descripcion"
+										value="@{winTipoActividades$composer.controlingresotipo.descripcion}">
+									</textbox>
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+		<toolbar>
+			<space width="90px"></space>
+			<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+		</toolbar>
+		</groupbox>
+		<toolbar>
+			<label style="font-size: 0.7em;color:black"
+				value="Identificación N°" visible="false">
+			</label>
+			<label id="numero" visible="false"
+				style="font-family: serif;font-size: 0.7em;color:black"
+				value="@{winTipoActividades$composer.TipoperfilSelecionada.id_perfil}" />
+
+		</toolbar>
+	</window>
+</zk>

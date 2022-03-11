@@ -1,0 +1,361 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winCuentas" ?>
+<zk>
+	<window id="winCuentas" apply="controlador.Ctrl_EditarCuentas"
+		width="565px" height="400px" border="none" position="center,center"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+
+		<vlayout vflex="1" hflex="1"
+			style="
+font: 1em arial, helvetica, sans-serif;
+background:#ffffff;">
+
+			<separator></separator>
+
+			<image src="/A_Iconos/registro.png"></image>
+
+<groupbox>
+			
+			<tabbox id="tb" height="240px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs id="tabs">
+					<tab id="A" label="General"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+
+						<grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								<column align="left" hflex="min" />
+								<column />
+
+							</columns>
+							<rows>
+							
+							<row height="5px">
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Cédula:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+										constraint="no empty: Ingrese Cédula" 
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_cedula" value="@{winCuentas$composer.persona.cedula}"
+											
+											maxlength="10" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+		
+										</textbox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Nombre:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+										constraint="no empty: Ingrese Nombre " 
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="nombre" value="@{winCuentas$composer.persona.nombre}"
+											
+											maxlength="20">
+											
+										</textbox>
+									</cell>
+								</row>
+
+								<row height="5px">
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Apellido Paterno:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+										constraint="no empty: Ingrese Apellido Paterno"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="apellido_paterno"
+											value="@{winCuentas$composer.persona.apellidoPaterno}"
+											
+											maxlength="20">
+										</textbox>
+									</cell>
+
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Apellido Materno:
+										</label>
+
+									</cell>
+
+									<cell>
+										<textbox width="120px"
+										constraint="no empty: Ingrese Apellido Materno"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="apellido_materno"
+											value="@{winCuentas$composer.persona.apellidoMaterno}"
+											
+											maxlength="20">
+										</textbox>
+									</cell>
+
+									
+								</row>
+
+							
+
+
+								<row>
+
+									
+										<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Perfil:
+										</label>
+
+
+									</cell>
+									<cell>
+										<combobox id="combo_perfil"
+										constraint="no empty: Ingrese Perfil"
+											style="font-size: 1em;color:black" height="30px"
+											model="@{winCuentas$composer.ListaPerfiles}"
+											selectedItem="@{winCuentas$composer.persona.segPerfil}"
+											value="@{winCuentas$composer.persona.segPerfil.codigo}"
+											width="140px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.codigo}" />
+											</template>
+										</combobox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Teléfono:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-family: serif;font-size: 1em;color:black;"
+											id="telefono"
+											value="@{winCuentas$composer.persona.telefono}"
+											
+											maxlength="9" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+										</textbox>
+									</cell>
+								</row>
+								
+								
+								
+								<row>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Usuario:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="text-transform:lowercase;font-size: 1em;color:black;border: 1px solid #C8C9CA;border-radius: 5px;"
+											
+											id="usuario" value="@{winCuentas$composer.persona.usuario}"
+											constraint="no empty: Debe ingresar el usuario"
+											maxlength="50">
+										</textbox>
+									</cell>
+
+
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Clave:
+										</label>
+
+									</cell>
+
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											
+											id="clave" value="" maxlength="50">
+										</textbox>
+										<checkbox id="visualizar"
+											style="font-size: 1em;color:black;">
+										</checkbox>
+									</cell>
+
+
+								</row>
+<row>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											E-mail:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="142px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="email" value="@{winCuentas$composer.persona.email}"
+											constraint="/.+@.+\.[a-z]+/: No es una dirección email."
+											maxlength="50">
+										</textbox>
+									</cell>
+
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Celular:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+										constraint="no empty: Ingrese Celular"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="celular" value="@{winCuentas$composer.persona.celular}"
+											
+											maxlength="10" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+										</textbox>
+
+
+									</cell>
+									
+								</row>
+								
+							</rows>
+						</grid>
+					</tabpanel>
+
+
+
+				</tabpanels>
+			</tabbox>
+
+			<toolbar>
+
+				
+				<space width="235px"></space>
+			<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+			</toolbar>
+			</groupbox>
+			<toolbar>
+				<label style="font-size: 0.7em;color:black"
+					value="Identificación N°" visible="false">
+				</label>
+				<label id="numero"
+					style="font-family: serif;font-size: 0.7em;color:black"
+					value="@{winCuentas$composer.persona.idUsuario}" visible="false" />
+
+			</toolbar>
+		</vlayout>
+	</window>
+</zk>
+

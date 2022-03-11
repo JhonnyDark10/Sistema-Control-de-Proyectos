@@ -1,0 +1,111 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winReporte" ?>
+<zk>
+	<window id="winReporte" height="100%" width="100%" border="none"
+		apply="controlador.ReportePrueba" closable="true"
+		position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+
+		<toolbar>
+
+			<image src="/A_Iconos/tituloreport.png"></image>
+			<separator></separator>
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				INFORME GENERAL PROYECTO
+ 
+
+				
+
+			</label>
+
+
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+			REPORTE DE PROYECTOS POR FECHAS
+			</label>
+			<separator></separator>
+
+		</toolbar>
+
+		<tabbox id="tb" mold="accordion"
+			style="
+		margin: 0px;
+		border: #0093f9 1px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;">
+			<tabs>
+				<tab label="Datos"
+					style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 1em;" />
+				<tab label="Reporte"
+					style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 1em;" />
+
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+
+
+					<separator></separator>
+					<space width="2%"></space>
+					<label style="font-size: 0.8em;color:black">Reporte:</label>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+
+						<radio id="radio_ingresos"
+							style="font-size: 0.85em;color:black" label="Reporte por fechas " />
+						<separator></separator>
+						
+						<label style="font-size: 0.8em;color:black">Escoger Estado de Proyecto</label>
+						<combobox id="cbo_proyectos">
+						<comboitem label="Propuestas"/>
+						<comboitem label="Ejecutados"/>
+						<comboitem label="Terminados"/>
+						<comboitem label="Rechazados"/>
+						</combobox>
+						
+                        <separator></separator>
+						<separator></separator>
+						<space></space><space></space><space></space><space></space>
+						<datebox format="MM-dd-yyyy" id="fechaini" />
+						<space></space>
+						<datebox format="MM-dd-yyyy" id="fechafin"/>
+						
+						
+						
+						<separator></separator>
+						<separator></separator>
+					<separator></separator>
+						<separator></separator>
+						
+						<space width="30%"></space>
+
+							
+										<button id="imprimir" label="Reporte" src="A_Iconos/imprimir.png" height="33px"
+									style="border-radius: 5px;font-size: 0.9em;color:white"/>
+							
+				
+
+
+				</tabpanel>
+
+
+				<tabpanel id="Gary">
+
+
+
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+
+	</window>
+</zk>

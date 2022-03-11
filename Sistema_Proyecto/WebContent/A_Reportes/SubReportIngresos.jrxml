@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubReportIngresos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e587e4b-86d7-440f-b1ce-04ede9612b7a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_Reportes\conexion.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="290"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="698"/>
+	<parameter name="usuario" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT sistema_proyectogad.sis_do_donaciones.nombre,
+	sistema_proyectogad.sis_do_donaciones.`cedulaRuc`,
+	sistema_proyectogad.sis_do_donaciones.nombre_aportante,
+	sistema_proyectogad.sis_do_donaciones.fecha,
+	sistema_proyectogad.sis_do_aporte.valor,
+	sistema_proyectogad.sis_do_donaciones.usuario,
+	sistema_proyectogad.sis_do_donaciones.estado_donacion
+FROM sistema_proyectogad.sis_do_aporte
+	INNER JOIN sistema_proyectogad.sis_do_donaciones ON 
+	 sistema_proyectogad.sis_do_aporte.fk_id_donacion = sistema_proyectogad.sis_do_donaciones.id_donacion 
+WHERE 
+	 sistema_proyectogad.sis_do_donaciones.estado_donacion = "A" 
+	 AND sistema_proyectogad.sis_do_donaciones.usuario = $P{usuario}]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_donaciones"/>
+	</field>
+	<field name="cedulaRuc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cedulaRuc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_donaciones"/>
+	</field>
+	<field name="nombre_aportante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombre_aportante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_donaciones"/>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_donaciones"/>
+	</field>
+	<field name="valor" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_aporte"/>
+	</field>
+	<field name="usuario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="usuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_donaciones"/>
+	</field>
+	<field name="estado_donacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado_donacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_do_donaciones"/>
+	</field>
+	<variable name="total" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" backcolor="#A6CFFF" uuid="e8a61663-d6ad-4404-a120-c51794787d72">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad2b4326-40f0-417d-a80c-04fa54c23078"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="0" width="111" height="20" backcolor="#A6CFFF" uuid="956c6c93-a38a-4477-b52e-3db2986c169a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6bc0a8d9-d7cf-41f4-8a0d-8676e18a2ba5"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" backcolor="#A6CFFF" uuid="34eb71bd-e92f-4532-98a7-8d175ff30178">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db5b83ee-bda4-42c4-988c-d3a1d5fc0838"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aportante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" backcolor="#A6CFFF" uuid="46cb464d-e6de-423e-9139-dbc4373726f1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8bd50fe3-0e9e-4500-aee7-5358a8013f89"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" backcolor="#A6CFFF" uuid="db30905f-2adc-447e-8242-f491f69b26c5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9502ce4a-883a-4ac6-be7c-ae42af023228"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="23f66184-1fb9-4a62-ae96-4eb568de3d8e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad2b4326-40f0-417d-a80c-04fa54c23078"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="20" uuid="b75ba760-6180-46e0-99ad-f38e78979bc5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6bc0a8d9-d7cf-41f4-8a0d-8676e18a2ba5"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cedulaRuc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="20" uuid="eae3c958-05d8-4407-b2f0-217d66e00592">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db5b83ee-bda4-42c4-988c-d3a1d5fc0838"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_aportante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20" uuid="c6a8d1f8-426a-4d45-8ba1-4c5471030f1e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8bd50fe3-0e9e-4500-aee7-5358a8013f89"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="09b28ab5-2ada-47e2-9853-9bf2093d347d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9502ce4a-883a-4ac6-be7c-ae42af023228"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="143" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="40" width="575" height="70" uuid="6d7f08ea-ccf3-48e1-b13d-a40cdf54bc53"/>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$F{usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["Sub2ReportIngresos.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="444" height="20" backcolor="#A6CFFF" uuid="639011d2-4492-46f1-a139-5e9073c32fd8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad2b4326-40f0-417d-a80c-04fa54c23078"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor total]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#FC0E0A" uuid="05e47ec0-45de-409b-9237-fe99e1120fdd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

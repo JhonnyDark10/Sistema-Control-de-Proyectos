@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GastosPorMeses" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a956bbd1-28e2-402a-85f6-bb5f2e7cc0f2">
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="233"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="760"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_Reportes\conexion.xml"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="4164061a-d20b-4252-a756-40fe8ca03661">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_Reportes\conexion.xml"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="250"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="742"/>
+		<parameter name="usuario" class="java.lang.Integer"/>
+		<parameter name="fechaini" class="java.util.Date"/>
+		<parameter name="fechafin" class="java.util.Date"/>
+		<queryString>
+			<![CDATA[SELECT 
+sum(sistema_proyectogad.sis_proyecto_propuesta.valor_total) AS TotalEgresos,
+
+	
+monthname(	sistema_proyectogad.sis_proyecto_propuesta.fecha_registro) as Meses
+
+
+FROM sistema_proyectogad.sis_proyecto_propuesta
+	INNER JOIN sistema_proyectogad.sis_proyecto_categoria ON 
+	 sistema_proyectogad.sis_proyecto_propuesta.fk_categoria = sistema_proyectogad.sis_proyecto_categoria.id_categoria
+	where (sistema_proyectogad.sis_proyecto_propuesta.estado_proyecto = "T" OR
+	             sistema_proyectogad.sis_proyecto_propuesta.estado_proyecto = "E") AND
+	             sistema_proyectogad.sis_proyecto_propuesta.usuario = $P{usuario} 
+	             AND (sistema_proyectogad.sis_proyecto_propuesta.fecha_registro >=   $P{fechaini} 
+	              and sistema_proyectogad.sis_proyecto_propuesta.fecha_registro   <=  $P{fechafin})
+	       GROUP BY monthname(	sistema_proyectogad.sis_proyecto_propuesta.fecha_registro) 
+order by 	sistema_proyectogad.sis_proyecto_propuesta.fecha_registro asc]]>
+		</queryString>
+		<field name="TotalEgresos" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="TotalEgresos"/>
+		</field>
+		<field name="Meses" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="Meses"/>
+		</field>
+		<variable name="totalEgresos" class="java.lang.Float" calculation="Sum">
+			<variableExpression><![CDATA[$F{TotalEgresos}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="usuario" class="java.lang.Integer"/>
+	<parameter name="fechaini" class="java.util.Date"/>
+	<parameter name="fechafin" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT 
+sum(sistema_proyectogad.sis_proyecto_propuesta.valor_total) AS TotalEgresos,
+
+	
+monthname(	sistema_proyectogad.sis_proyecto_propuesta.fecha_registro) as Meses
+
+
+FROM sistema_proyectogad.sis_proyecto_propuesta
+	INNER JOIN sistema_proyectogad.sis_proyecto_categoria ON 
+	 sistema_proyectogad.sis_proyecto_propuesta.fk_categoria = sistema_proyectogad.sis_proyecto_categoria.id_categoria
+	where (sistema_proyectogad.sis_proyecto_propuesta.estado_proyecto = "T" OR
+	             sistema_proyectogad.sis_proyecto_propuesta.estado_proyecto = "E") 
+	              AND
+	             sistema_proyectogad.sis_proyecto_propuesta.usuario = $P{usuario} 
+	             AND (sistema_proyectogad.sis_proyecto_propuesta.fecha_registro >=   $P{fechaini} 
+	              and sistema_proyectogad.sis_proyecto_propuesta.fecha_registro   <=  $P{fechafin})
+	    GROUP BY monthname(	sistema_proyectogad.sis_proyecto_propuesta.fecha_registro) 
+order by 	sistema_proyectogad.sis_proyecto_propuesta.fecha_registro asc]]>
+	</queryString>
+	<field name="TotalEgresos" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="TotalEgresos"/>
+	</field>
+	<field name="Meses" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Meses"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="51" y="4" width="320" height="78" uuid="eb25d9c6-3e11-49cf-95ab-11525297b37d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GAD Parroquial Anconcito]]></text>
+			</staticText>
+			<image>
+				<reportElement x="430" y="2" width="80" height="83" uuid="aad29cc6-2dcd-432b-88b6-b4b1ee5da441"/>
+				<imageExpression><![CDATA["logoA.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="1" y="85" width="553" height="22" forecolor="#000000" backcolor="#3093FC" uuid="1bd8c79a-ef9c-42d4-aa04-73198f986c29"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="406" y="1" width="144" height="20" forecolor="#FFFFFF" uuid="808f3811-8f1f-4848-a4d0-608cda936c76"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="10" width="353" height="15" uuid="f6139efe-55b5-4893-9aec-bd195c84d07b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informe General de Todos los Egresos (Grafico Estadistico)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="561" splitType="Stretch">
+			<componentElement>
+				<reportElement x="80" y="0" width="360" height="100" uuid="1819e844-a39d-4340-85d2-a55cb83e64a0">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.components.autoresize.proportional" value="true"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="3da47ecc-d491-40e0-85b5-658725fa38ba">
+						<datasetParameter name="usuario">
+							<datasetParameterExpression><![CDATA[$P{usuario}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaini">
+							<datasetParameterExpression><![CDATA[$P{fechaini}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechafin">
+							<datasetParameterExpression><![CDATA[$P{fechafin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="170" uuid="e3397858-5055-45af-9329-b994644f4053">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="170" height="30" backcolor="#3093FC" uuid="084966b8-b047-456e-ac4f-338099c68e89"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Meses]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="170" height="30" backcolor="#3093FC" uuid="e7ba5cff-742f-4110-ac64-3f97fdee355e"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total $]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="170" height="30" uuid="11c9b272-6914-419c-9b5d-c8c03f027b60"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{Meses}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="190" uuid="63978905-22bf-4e50-b4ab-95113a30abfa">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="190" height="30" backcolor="#3093FC" uuid="62e14b5e-d9ba-444d-b676-853c07f9adc7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Egresos]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="190" height="30" forecolor="#FF0400" backcolor="#3093FC" uuid="0ca73bbc-62f2-4a34-9795-ff9be1c70927"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[String.format("%.2f", (double)$V{totalEgresos})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="190" height="30" uuid="55972a78-487e-4b68-a2a3-ad8b34ecfef9"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[String.format("%.2f", (double)$F{TotalEgresos})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="40" y="308" width="470" height="240" uuid="27e8d212-4acb-4473-9093-6cb8bbe4afa2"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Gráfico N°1"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Meses}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{TotalEgresos}]]></valueExpression>
+						<labelExpression><![CDATA[""+ $F{Meses}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,173 @@
+<?page title="Genera Comprobantes" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winPermisos" ?>
+<zk>
+	<window id="winPermisos" height="100%" width="100%"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('controlador.Seg_Permisos')"
+		closable="true" border="normal"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+<separator></separator>
+<space></space><space></space>
+		<image src="/A_Iconos/acceso.png"></image>
+		<separator></separator>
+		<separator></separator>
+<groupbox>
+		<toolbar
+			style="background:#ffffff;border: white 1px solid;border-radius: 3px;">
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space><space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<space></space>
+			<label
+				style="font-size: 1em;color:black;">
+				Perfiles:
+			</label>
+			<combobox id="combo" model="@load(vm.perfilesLista)"
+			   onSelect="@command('comboseleccionado')"
+				width="200px" height="25px"
+				style="font-size: 1em;color:black;"
+				selectedItem="@bind(vm.perfilSelecionada)">
+				<template name="model">
+					<comboitem label="@load(each.codigo)"
+						style="font-size: 1em;color:black;" />
+				</template>
+			</combobox>
+
+		</toolbar>
+</groupbox>
+        <separator></separator>
+        <separator></separator>
+		<columnlayout height="90%">
+			<columnchildren width="30%">
+
+				<tabbox id="tb" mold="accordion"  height="84%"
+					style="
+		margin: 0px;
+		border: #0093f9 1px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;">
+					<tabs>
+						<tab label="Menus"
+							style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 0.9em;" />
+					</tabs>
+					<tabpanels>
+
+						<tabpanel style="overflow: auto">
+
+							<toolbar >
+
+								<tree 
+									style="display: inline-block; 
+                                  _display: inline;"
+									id="menu">
+								</tree>
+
+							</toolbar>
+						</tabpanel>
+
+
+					</tabpanels>
+				</tabbox>
+
+
+
+
+			</columnchildren>
+
+			<columnchildren width="40%">
+
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<space width="35%"></space>
+
+				
+ <button onClick="@command('btn_Anadir')" label="Añadir" src="A_Iconos/agregar_g.png" 
+ height="33px" style="text-align: center;border-radius: 5px;font-size: 0.9em;color:white"/>
+					
+
+
+				<separator></separator>
+				<separator></separator>
+				<space width="35%"></space>
+
+				<button onClick="@command('btn_Eliminar')" label="Quitar" src="A_Iconos/eliminar_g.png" height="33px"
+					width="90px"		style="border-radius: 5px;font-size: 0.9em;color:white"/>
+              
+
+
+
+			</columnchildren>
+			<columnchildren width="30%">
+
+
+				<tabbox id="tb1" mold="accordion"  height="84%"
+					style="
+		margin: 0px;
+		border: #0093f9 1px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;">
+					<tabs>
+						<tab label="Accesos"
+							style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 0.9em;" />
+					</tabs>
+					<tabpanels>
+
+						<tabpanel style="overflow: auto">
+
+							<toolbar>
+
+								<tree
+									style="display: inline-block; 
+                                  _display: inline;"
+									id="menu1">
+								</tree>
+
+							</toolbar>
+						</tabpanel>
+
+
+					</tabpanels>
+				</tabbox>
+
+
+			</columnchildren>
+
+		</columnlayout>
+
+
+
+
+
+
+	</window>
+
+
+</zk>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteIngresos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="09df57ae-3b38-47b0-8e74-49787a095476">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="603"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="383"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_Reportes\conexion.xml"/>
+	<parameter name="usuario" class="java.lang.Integer"/>
+	<parameter name="fecha" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT sistema_proyectogad.seg_periodo_encargo.valor_ingreso,
+	sistema_proyectogad.seg_periodo_encargo.periodo_desde,
+	sistema_proyectogad.seg_periodo_encargo.periodo_hasta,
+	sistema_proyectogad.seg_periodo_encargo.estado,
+	sistema_proyectogad.seg_usuario.`CEDULA`,
+	CONCAT( sistema_proyectogad.seg_usuario.`APELLIDO_PATERNO`,' ',sistema_proyectogad.seg_usuario.`APELLIDO_MATERNO`,' ',sistema_proyectogad.seg_usuario.`NOMBRE`) AS nombres,
+	sistema_proyectogad.seg_usuario.`CELULAR`,
+	sistema_proyectogad.seg_periodo_encargo.id_periodo
+FROM sistema_proyectogad.seg_periodo_encargo
+	INNER JOIN sistema_proyectogad.seg_usuario ON 
+	 sistema_proyectogad.seg_periodo_encargo.fk_seg_usuario = sistema_proyectogad.seg_usuario.id_usuario 
+WHERE 
+	 sistema_proyectogad.seg_periodo_encargo.estado = "A"
+	 AND sistema_proyectogad.seg_periodo_encargo.id_periodo = $P{usuario}]]>
+	</queryString>
+	<field name="valor_ingreso" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="valor_ingreso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<field name="periodo_desde" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="periodo_desde"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<field name="periodo_hasta" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="periodo_hasta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<field name="CEDULA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CEDULA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+	</field>
+	<field name="CELULAR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CELULAR"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="id_periodo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_periodo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement x="51" y="4" width="320" height="78" uuid="18b5bfa6-29bf-4a7d-9d21-e17e33ce31f6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GAD Parroquial Anconcito]]></text>
+			</staticText>
+			<image>
+				<reportElement x="430" y="2" width="80" height="83" uuid="5a74d231-54d4-4cc9-ba74-24de7fcf4bc4"/>
+				<imageExpression><![CDATA["logoA.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="1" y="85" width="553" height="22" forecolor="#000000" backcolor="#3093FC" uuid="d1de05dc-ee1c-4c54-b979-1246ad19ccf9"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="406" y="1" width="144" height="20" forecolor="#FFFFFF" uuid="0000263c-753d-42ce-aed6-84d05679fbcf"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="10" width="353" height="15" uuid="ff286a68-9bf7-4ae1-9dd8-458b5e2025e2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informe General de Todos los Ingresos Recibidos en el Periodo actual]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="139" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<rectangle radius="1">
+				<reportElement x="1" y="0" width="553" height="100" uuid="5d753c9a-083f-4ded-be84-18830c2f36ef"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="30" y="10" width="52" height="20" uuid="18eee18f-eaa4-4915-875f-106bbba9e686">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="546c36c1-bdee-443f-92b4-8db51d685e11"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="119" y="9" width="69" height="21" uuid="a80da9fb-5da5-4861-aa2a-7f30dad164c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="546c36c1-bdee-443f-92b4-8db51d685e11"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{CEDULA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="40" width="53" height="20" uuid="885e8572-8601-4993-9233-a546ff2c35e6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e55703a6-b5b5-47e7-9590-0327326e9da1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="119" y="40" width="100" height="21" uuid="b61730ff-cf34-47d5-966a-59f810c7cc07">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e55703a6-b5b5-47e7-9590-0327326e9da1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="309" y="10" width="100" height="20" uuid="7ac4cdd9-b75f-441d-a16d-a207a377f0f7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73cc2909-d461-4d0f-97e3-2331d1889b87"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Actual Caja: $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="409" y="9" width="100" height="21" forecolor="#FF0313" uuid="ba668b36-75cb-4e04-91e8-1f3c6b02dac7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73cc2909-d461-4d0f-97e3-2331d1889b87"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_ingreso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="309" y="40" width="100" height="20" uuid="0555b02c-769f-4796-a04d-3a18abf4cdf2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb64640a-57be-48d9-8091-5832a3cfdc03"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="409" y="39" width="100" height="21" uuid="7ba9d0ed-0060-4252-b06b-288adb4be0f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb64640a-57be-48d9-8091-5832a3cfdc03"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{CELULAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="70" width="79" height="20" uuid="fb4ff3e9-8839-4758-8f86-141184ace08b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="811e2a12-061a-4acd-b609-45b7ff59e4cc"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo Desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="69" width="100" height="20" uuid="16d591f7-a87e-4403-8ade-ef9d52ed66e2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90cd9696-be0b-4b22-8479-d5cb455e5d3b"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo Hasta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="119" y="70" width="100" height="20" uuid="89d7b0a0-a5d2-4248-8e14-8ac1d3b8d851">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="811e2a12-061a-4acd-b609-45b7ff59e4cc"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{periodo_desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="69" width="100" height="20" uuid="e5cf589f-c667-4cd6-85f8-e3a3df496a0e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90cd9696-be0b-4b22-8479-d5cb455e5d3b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{periodo_hasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="115" width="353" height="15" uuid="0c75ffe7-ffb5-4205-8dee-df86427532f6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Egresos por concepto de Proyectos Aceptados]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="88" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="0" width="574" height="50" uuid="ce05675d-96f7-44af-a3f2-0c8e2e28bc82"/>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$F{id_periodo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["SubEgresosProyectos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

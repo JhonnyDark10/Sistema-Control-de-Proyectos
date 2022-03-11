@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>New Data Adapter SistemaGad</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password>12345</password><savePassword>true</savePassword><url>jdbc:mysql://localhost/sistema_proyectogad</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

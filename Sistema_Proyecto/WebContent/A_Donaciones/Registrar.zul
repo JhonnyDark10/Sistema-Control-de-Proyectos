@@ -1,0 +1,212 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winCuentas" ?>
+<zk>
+	<window id="winCuentas" height="100%" width="100%" apply="controlador.Ctrl_Donaciones"
+		closable="true" border="normal"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+		<vlayout vflex="1" hflex="1">
+			<groupbox>
+				<image src="/A_Iconos/donaciones.png"></image>
+				<groupbox>
+					<toolbar>
+
+						<label style="font-size: 1em;color:black">
+							Fecha:
+						</label>
+						<textbox id="fechaactual" height="20px"
+							width="80px" style="font-size: 1em;color:black;border: none;" />
+						<label style="font-size: 1em;color:black">
+							Hora:
+						</label>
+						<textbox id="horaactual" height="20px"
+							width="80px" style="font-size: 1em;color:black;border: none;" />
+
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+						<space></space>
+
+					</toolbar>
+					<separator></separator>
+					<separator></separator>
+
+					<columnlayout height="100%">
+						<columnchildren width="50%">
+							<grid
+								style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+								<columns
+									style="background-color: transparent;">
+									<column align="left" hflex="min" />
+									<column />
+
+								</columns>
+								<rows>
+
+									<row height="5px">
+										<cell>
+											<label
+												style="font-size: 1em;color:black">
+												Cédula:
+											</label>
+										</cell>
+										<cell>
+											<textbox 
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="cedula"
+											
+											maxlength="10" xmlns:w="client">
+											<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+											</textbox>
+										</cell>
+									</row>
+									<row>
+										<cell>
+											<label
+												style="font-size: 1em;color:black">
+												Nombre de Institución:
+											</label>
+										</cell>
+										<cell>
+											<textbox height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="institucion">
+
+											</textbox>
+										</cell>
+									</row>
+
+									<row>
+										<cell>
+											<label
+												style="font-size: 1em;color:black">
+												Nombre de Aportante:
+											</label>
+
+										</cell>
+										<cell>
+											<textbox height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="aportante" >
+
+											</textbox>
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</columnchildren>
+
+						<columnchildren width="50%">
+
+							<label
+								style="font-size: 0.9em;color:black">
+								Tipo de Donación:
+							</label>
+							<separator></separator>
+							<separator></separator>
+							<radio id="radio_efectivo"
+								style="font-size: 0.9em;color:black" label="Dinero" />
+							<space></space>
+							<space></space>
+							<space></space>
+							<radio id="radio_bienes"
+								style="font-size: 0.9em;color:black" label="Bienes" />
+							<separator></separator>
+							<separator></separator>
+							<separator></separator>
+
+							<label id="lvalor" style="font-size: 1em;color:black">
+								Valor $:
+							</label>
+							<textbox height="25px" width="20%"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="valor" >
+
+							</textbox>
+							
+							<label id="ldescripcion" style="font-size: 1em;color:black">
+								Descripción:
+							</label>
+							<textbox height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="descripcion" >
+
+							</textbox>
+							
+							<label id="lcantidad" style="font-size: 1em;color:black">
+								Cantidad:
+							</label>
+							<textbox height="25px" width="20%"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="cantidad" >
+
+							</textbox>
+						</columnchildren>
+
+
+					</columnlayout>
+
+
+
+
+					<toolbar style="text-align: left;">
+<separator></separator>
+<separator></separator>
+<separator></separator>
+
+						<space width="650px"></space>
+
+						<button id="grabar" label="Guardar"
+							src="A_Iconos/imprimir.png" height="33px"
+							style="border-radius: 5px;font-size: 1.2em;color:white" />
+
+
+						
+
+
+					</toolbar>
+				</groupbox>
+			</groupbox>
+			<separator></separator>
+
+			
+
+
+		</vlayout>
+	</window>
+</zk>

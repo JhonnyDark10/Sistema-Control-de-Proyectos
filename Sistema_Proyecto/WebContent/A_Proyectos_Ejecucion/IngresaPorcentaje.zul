@@ -1,0 +1,108 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winPorcentajes" ?>
+<zk>
+	<window id="winPorcentajes" apply="controlador.CtrlEditaPorcentajes"
+		width="300px" height="190px" border="none" position="center,center"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+
+		<vlayout vflex="1" hflex="1"
+			style="
+font: 1em arial, helvetica, sans-serif;
+background:#ffffff;">
+
+<groupbox>
+			
+			<tabbox id="tb" height="80px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs id="tabs">
+					<tab id="A" label="ingrese calificacion (0 - 100 %)"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+
+						<grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								
+
+							</columns>
+							<rows>
+								<row>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Porcentaje:
+										</label>
+
+									</cell>
+									<cell>
+										
+										<textbox width="80px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="porcentaje"
+											
+											value="@{winPorcentajes$composer.personaTarea.porcentajeTarea}"
+											
+											
+											>
+										</textbox>
+									</cell>
+							
+								</row>
+
+
+
+								
+
+							</rows>
+						</grid>
+					</tabpanel>
+
+
+
+				</tabpanels>
+			</tabbox>
+
+			<toolbar>
+
+				
+				<space width="235px"></space>
+			<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+			</toolbar>
+			</groupbox>
+			<toolbar>
+				<label style="font-size: 0.7em;color:black"
+					value="Identificación N°" visible="true">
+				</label>
+				<label id="numero"
+					style="font-family: serif;font-size: 0.7em;color:black"
+					value="@{winPorcentajes$composer.personaTarea.idTarea}" visible="true" />
+
+			</toolbar>
+		</vlayout>
+	</window>
+</zk>
+

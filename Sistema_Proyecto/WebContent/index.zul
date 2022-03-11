@@ -1,0 +1,117 @@
+<zk>
+	<div style="background:#0093f9;" height="100px">
+		
+		
+	
+		<separator></separator>
+		<space width="70%"> </space>
+		<image src="/A_Iconos/portada1.png" height="40px" />
+		
+		<image src="/A_Iconos/gadancon.jpg" height="70px" />
+	</div>
+
+	<borderlayout width="100%" height="84%"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('controlador.Menu')">
+
+		<north hflex="100%" height="3px" border="none"
+			style="background:#0E1C78;">
+
+		</north>
+
+		<west border="none" width="235px" 
+		    		
+			style="
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;overflow-x:hidden; overflow-y:auto;">
+
+			<div width="200px" style="margin: -2px;">
+
+				<textbox id="lb1" width="235px" height="30px" 
+					style="font-size: 0.7em;color:white;background:#0093f9;border: #0093f9 2.2px solid;
+					border-radius: 0px;" />
+				<zscript><![CDATA[
+                    lb1.value = "Datos Usuario";]]>
+                    </zscript>
+				    <separator></separator>
+                                 
+						<h:form id="f" name="f"
+							action="j_spring_security_logout" method="POST"
+							xmlns:h="native">
+
+							<html>
+								<input type="hidden"
+									name="${_csrf.parameterName}" value="${_csrf.token}" />
+							</html>
+
+							<space></space><image src="/A_Iconos/usu.ico"
+								height="25px" />
+							<space></space><label style="font-size: 0.7em;color:black" >Usurio: -</label>
+							<label id="nombreU" 
+								style="font-size: 0.7em;color:black" />
+							<space></space>
+							<separator></separator>
+							<space></space><image src="/A_Iconos/usu_2.ico"
+								height="25px" />
+							<space></space><label style="font-size: 0.7em;color:black" >Tipo -</label>
+							<label id="operador" 
+								style="font-size: 0.7em;color:black" />
+							<space></space>
+							<separator></separator>
+							<space></space><image src="/A_Iconos/usu_1.ico"
+								height="25px" />
+							<h:input type="submit" value="  Salir del Sistema"
+								style="font-size: 0.7em;color:red;border: white 0px inset;background:#ffffff;" />
+						    
+						</h:form>
+				    		
+					
+			
+					<separator></separator>
+                    <textbox id="lb2" width="235px" height="30px" 
+					style="font-size: 0.7em;color:white;background:#0093f9;border: #0093f9 2.2px solid;
+					border-radius: 0px;" />
+
+				<zscript><![CDATA[
+                lb2.value = "Opciones Del Sistema";]]>
+                </zscript>			    
+		
+				<tree width="235px" 
+                  id="menu">
+			    </tree>	
+		
+			</div>
+		</west>
+
+
+
+	<center id="mainContent" autoscroll="true"
+			style="
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;">
+
+
+			<include id="areaContenido" hflex="1" vflex="1" />
+
+
+		</center>
+
+		
+
+	</borderlayout>
+
+</zk>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winPermisos" ?>
+<zk>
+	<window id="winPermisos" height="100%" width="100%"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('controlador.Seg_ListaMenu')"
+		closable="true" border="normal"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+		<vlayout vflex="1" hflex="1" 
+		>
+			<image src="/A_Iconos/menu.png"></image>
+			<groupbox>
+			<toolbar >
+				<label style="font-size: 0.7em;color:black" visible="false">
+					Búsqueda por nombres
+				</label>
+				<textbox id="txtBuscar" height="30px" width="150px" maxlength="10"
+					style="font-size: 0.7em;color:black;border: white 2.2px inset;"
+					visible="false">
+		
+					</textbox> 
+                    
+
+				<toolbarbutton id="btnBuscar" src="A_Iconos/buscar.png" visible="false"
+					style="font-size: 0.9em;border-radius: 15px;background-color: #0093f9"
+					
+					 />
+
+                <space width="460px"></space>
+                
+				
+				  <button onClick="@command('btnNuevo')" label="Añadir" src="A_Iconos/agregar_g.png" height="33px"
+						style="text-align: center;border-radius: 5px;font-size: 1.2em;color:white"/>
+									
+				
+				
+				 <button onClick="@command('btnEditar')" label="Editar" src="A_Iconos/edita_a.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				
+				
+						
+					
+				<button onClick="@command('btnEliminar')" label="Eliminar" src="A_Iconos/eliminar_g.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>	
+					
+			</toolbar>
+			</groupbox>
+			
+					
+				<tabbox id="tb" mold="accordion" height="90%"
+					style="
+		margin: 0px;
+		border: #0093f9 1px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;">
+					<tabs>
+						<tab label="General"
+							style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 0.9em;" />
+					</tabs>
+					<tabpanels>
+
+						<tabpanel style="overflow: auto">
+
+							<toolbar>
+
+								<tree 
+									style="display: inline-block; 
+                                  _display: inline;"
+									id="menu">
+								</tree>
+
+							</toolbar>
+						</tabpanel>
+
+
+					</tabpanels>
+				</tabbox>
+			
+		</vlayout>
+	</window>
+</zk>
